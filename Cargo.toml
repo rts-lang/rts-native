@@ -1,0 +1,35 @@
+[package]
+name = "rts-native"
+edition = "2024"
+
+autobins = false
+autoexamples = false
+autotests = false
+autobenches = false
+
+publish = false
+
+[[bin]]
+name = "rts-native"
+path = "src/main.rs"
+
+[dependencies]
+rts = { git = "https://github.com/rts-lang/rts" }
+
+[profile.release]
+opt-level = 3
+codegen-units = 1
+lto = "fat"
+panic = "abort"
+strip = "symbols"
+overflow-checks = false
+debug  = false
+incremental = true
+rpath = false
+
+[profile.dev]
+opt-level = 0
+debug = true
+overflow-checks = true
+lto = false
+incremental = true
